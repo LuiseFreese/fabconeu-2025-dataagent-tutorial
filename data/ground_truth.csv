@@ -1,0 +1,224 @@
+benchmark,question_number,question,query,expected_answer
+GreaterManchesterCrime,1,"What are the most likely Outcome of the police investigation if the crime happen on ""street""?","SELECT   TOP 1 [Outcome]
+FROM [GreaterManchesterCrime].greatermanchestercrime
+WHERE    [Location] LIKE '%Street%'
+GROUP BY [Outcome]
+ORDER BY count(*) DESC;","The most likely outcome of the police investigation if the crime happens on a street is ""Investigation complete; no suspect identified."""
+Pesticide,1,which pesticides are most used?,"SELECT   TOP 1 [pestcode]
+FROM [Pesticide].resultsdata15
+GROUP BY [pestcode]
+ORDER BY count(*) DESC;",The most used pesticide is the one with the code 102.
+StudentMathScore,1,Which federally-funded state performs worst on the NAEP math exam for eighth graders?,"SELECT   TOP 1 [state]
+FROM [StudentMathScore].ndecoreexcel_math_grade8
+ORDER BY [average_scale_score];",The federally-funded state that performs worst on the NAEP math exam for eighth graders is the District of Columbia.
+TheHistoryofBaseball,1,"For award winners, which is the position that has the most hall of fame players?","SELECT   TOP 1 T2.[notes], COUNT(DISTINCT T2.[player_id]) as count_
+FROM [TheHistoryofBaseball].hall_of_fame AS T1
+     INNER JOIN [TheHistoryofBaseball].player_award AS T2
+         ON T1.[player_id] = T2.[player_id]
+WHERE    T1.[inducted] = 'Y'
+	AND T2.[notes] IS NOT NULL AND T2.[notes] <> ''
+GROUP BY [notes]
+ORDER BY count_ DESC;","The position that has the most Hall of Fame players among award winners is outfielder (OF), with 50 players."
+WorldSoccerDataBase,1,How many games ended in a 0-0 tie?,"SELECT count(*)
+FROM   [WorldSoccerDataBase].football_data
+WHERE  FTHG = 0
+       AND FTAG = 0;","A total of 15,358 games ended in a 0-0 tie."
+GreaterManchesterCrime,2,What is the crime rate for Eden Street area?,"SELECT count(*)
+FROM [GreaterManchesterCrime].greatermanchestercrime
+WHERE  [Location] LIKE '%Eden Street%';",The crime rate for the Eden Street area is 1 reported incident.
+Pesticide,2,How many samples come from other countries?,"SELECT count(*)
+FROM [Pesticide].sampledata15
+WHERE  [origin] = '2';","There are 2,337 samples that come from other countries."
+StudentMathScore,2,Which school district receives the most federal revenue in Wisconsin?,"SELECT   TOP 1 T1.[school_district]
+FROM [StudentMathScore].finrev_fed_17 AS T1
+     INNER JOIN [StudentMathScore].finrev_fed_key_17 AS T2
+         ON T1.[state_code] = T2.[State_Code]
+WHERE    T2.[State] = 'Wisconsin'
+ORDER BY T1.[t_fed_rev] DESC;",The school district that receives the most federal revenue in Wisconsin is the Milwaukee City School District.
+TheHistoryofBaseball,2,Who is the youngest baseball player so far?,"SELECT   TOP 1 [name_first],
+               [name_last]
+FROM [TheHistoryofBaseball].player
+ORDER BY [birth_year] DESC;",The youngest baseball player so far is Raul Mondesi.
+WorldSoccerDataBase,2,How many league division does football_data database has?,"SELECT COUNT(DISTINCT Div) AS NumOfDivisions
+FROM [WorldSoccerDataBase].football_data;",The football_data database has 38 league divisions.
+GreaterManchesterCrime,3,When was the last instance of a violent or sexual offense in Manchester?,"SELECT   TOP 1 [CrimeID]
+FROM [GreaterManchesterCrime].greatermanchestercrime
+WHERE    [Type] = 'Violence and sexual offences'
+ORDER BY [CrimeTS] DESC;",The last instance of a violent or sexual offense in Manchester is associated with the CrimeID A8:24:EB:3F:79:C5.
+Pesticide,3,"If sample 6480 is imported, which country is it originally from?","SELECT [country]
+FROM [Pesticide].sampledata15
+WHERE  [sample_pk] = 6480
+       AND [origin] = 2;",Sample 6480 is originally from country 150.
+StudentMathScore,3,Which state has the highest average score in math exam?,"SELECT   TOP 1 [state]
+FROM [StudentMathScore].ndecoreexcel_math_grade8
+ORDER BY [average_scale_score] DESC;",The state with the highest average score in the math exam is Massachusetts.
+TheHistoryofBaseball,3,"For the All-Star Game MVP, who is the youngest winner?","SELECT TOP 1
+        T1.[player_id],
+        T1.[award_id],
+        max(T1.[year] - T2.[birth_year]) AS age
+FROM [TheHistoryofBaseball].player_award AS T1
+     INNER JOIN [TheHistoryofBaseball].player AS T2
+         ON T1.[player_id] = T2.[player_id]
+WHERE T1.[award_id] = 'All-Star Game MVP'
+GROUP BY T1.[player_id], T1.[award_id]
+ORDER BY age ASC;","The youngest winner of the All-Star Game MVP is Ken Griffey Jr., who won the award at the age of 23."
+WorldSoccerDataBase,3,How many matches did Pinnacle have betting odds for?,"SELECT count(*)
+FROM   [WorldSoccerDataBase].football_data
+WHERE  PSH != ''
+       AND PSD != ''
+       AND PSA != '';","Pinnacle had betting odds for 67,894 matches."
+GreaterManchesterCrime,4,Where is the most dangerous area?,"SELECT   TOP 1 [Location]
+FROM [GreaterManchesterCrime].greatermanchestercrime
+GROUP BY [Location]
+ORDER BY count(*) DESC;",The most dangerous area is on or near Parking Area.
+Pesticide,4,What are the top 5 analyzing labs where pesticide residues detection was conducted?,"SELECT   TOP 5 [lab]
+FROM [Pesticide].resultsdata15
+GROUP BY [lab]
+ORDER BY count(*) DESC;","The top 5 analyzing labs where pesticide residues detection was conducted are CA1, NY1, WA1, MI1, and FL1."
+StudentMathScore,4,Which state performs best on the NAEP 8th grade math test?,"SELECT   TOP 1 [state]
+FROM [StudentMathScore].ndecoreexcel_math_grade8
+ORDER BY [average_scale_score] DESC;",The state that performs best on the NAEP 8th grade math test is Massachusetts.
+TheHistoryofBaseball,4,How many points were received by the NL league's most valuable player winner in 1990?,"SELECT T2.[points_won]
+FROM [TheHistoryofBaseball].player_award AS T1
+   INNER JOIN [TheHistoryofBaseball].player_award_vote AS T2
+       ON T1.[player_id] = T2.[player_id]
+WHERE  T1.[league_id] = 'NL'
+       AND T1.[award_id] = 'Most Valuable Player'
+       AND T1.[year] = '1990'
+       AND T2.[league_id] = 'NL'
+       AND T2.[year] = '1990';",The NL league's most valuable player winner in 1990 received 331 points.
+WorldSoccerDataBase,4,What is the away team against Omiya Ardija in 2018?,"SELECT AwayTeam
+FROM   [WorldSoccerDataBase].football_data
+WHERE  HomeTeam = 'Omiya Ardija'
+       AND Season LIKE '%2018%';",The away team against Omiya Ardija in 2018 was Verdy.
+GreaterManchesterCrime,5,Where is the place with the largest number of sexual offenses crime events?,"SELECT   TOP 1 [Location]
+FROM [GreaterManchesterCrime].greatermanchestercrime
+WHERE    [Type] = 'Violence and sexual offences'
+GROUP BY [Location]
+ORDER BY count(*) DESC;",The place with the largest number of sexual offenses crime events is on or near Parking Area.
+Pesticide,5,how many samples have unknown countries of origin?,"SELECT count(*)
+FROM [Pesticide].sampledata15
+WHERE  [origin] = '3';",There are 96 samples with unknown countries of origin.
+StudentMathScore,5,Which state spent the most revenue towards schools and whats the state average score,"SELECT   TOP 1 T2.[State],
+               T3.[average_scale_score]
+FROM [StudentMathScore].finrev_fed_key_17 AS T2
+     INNER JOIN [StudentMathScore].finrev_fed_17 AS T1
+         ON T1.[state_code] = T2.[State_Code]
+     INNER JOIN [StudentMathScore].ndecoreexcel_math_grade8 AS T3
+         ON T2.[State] = T3.[state]
+GROUP BY T2.[State], T3.[average_scale_score]
+ORDER BY sum(T1.[t_fed_rev]) DESC;","California spent the most revenue towards schools, and the state average score is 277."
+TheHistoryofBaseball,5,What is the top league that pays the most to their players?,"SELECT   TOP 1 [league_id]
+FROM [TheHistoryofBaseball].[salary]
+GROUP BY [league_id]
+ORDER BY sum(CAST ([salary] AS BIGINT)) DESC;",The top league that pays the most to their players is the NL.
+WorldSoccerDataBase,5,What's the odds for draw on Bet365 for the game Swindon v.s. Millwall for 2016/2017 season?,"SELECT B365D
+FROM   [WorldSoccerDataBase].football_data
+WHERE  HomeTeam = 'Swindon'
+       AND AwayTeam = 'Millwall'
+       AND Season = '2016/2017';",The odds for a draw on Bet365 for the game between Swindon and Millwall in the 2016/2017 season were 3.5.
+GreaterManchesterCrime,6,Which streets in Manchester have the highest rates of crime?,"SELECT   TOP 1 [Location]
+FROM [GreaterManchesterCrime].greatermanchestercrime
+WHERE    [Location] LIKE '%Street%'
+GROUP BY [Location]
+ORDER BY count(*) DESC;",The street in Manchester with the highest rate of crime is on or near Market Street.
+Pesticide,6,Which lab is used for testing for predict AP?,"SELECT [lab]
+FROM [Pesticide].resultsdata15
+WHERE  [commod] = 'AP';",The lab used for testing for predict AP is WA1.
+StudentMathScore,6,How many unique school districts are there in Indiana?,"SELECT count(DISTINCT T1.[school_district])
+FROM [StudentMathScore].finrev_fed_17 AS T1
+   INNER JOIN [StudentMathScore].finrev_fed_key_17 AS T2
+       ON T1.[state_code] = T2.[State_Code]
+WHERE  T2.[State] = 'Indiana';",There are 313 unique school districts in Indiana.
+TheHistoryofBaseball,6,Average lifespan of hall of fame players,"SELECT AVG(COALESCE(NULLIF(T1.death_year, 0), YEAR(GETDATE())) - T1.birth_year)
+FROM [TheHistoryofBaseball].player AS T1
+JOIN [TheHistoryofBaseball].hall_of_fame AS T2
+  ON T1.[player_id] = T2.[player_id]
+WHERE T2.[inducted] = 'Y'",The average lifespan of Hall of Fame players is 73 years.
+WorldSoccerDataBase,6,Which match has the highest draw opening so far?,"SELECT   TOP 1 MATCH
+FROM     [WorldSoccerDataBase].betfront
+ORDER BY DRAW_OPENING DESC;",The match with the highest draw opening so far is Real Madrid - Granada CF.
+GreaterManchesterCrime,7,Which Type of crime happens the most in Salford?,"SELECT   TOP 1 [Type]
+FROM [GreaterManchesterCrime].greatermanchestercrime
+WHERE    [LSOA] LIKE '%Salford%'
+GROUP BY [Type]
+ORDER BY count(*) DESC;",The type of crime that happens the most in Salford is violence and sexual offences.
+Pesticide,7,What's the unit of measure used for the product commodity code PO?,"SELECT [conunit]
+FROM [Pesticide].resultsdata15
+WHERE  [commod] = 'PO';",The unit of measure used for the product commodity code PO is M.
+StudentMathScore,7,How much did the federal government spend in No Child Left Behind funding in 2017?,"SELECT sum([c14])
+FROM [StudentMathScore].finrev_fed_17
+WHERE  [yr_data] = 17;","The federal government spent $14,111,900 in No Child Left Behind funding in 2017."
+TheHistoryofBaseball,7,Top 10 teams with the most hall of fame players,"SELECT   TOP 10 T2.[team_id], COUNT(DISTINCT T2.[player_id]) as count_
+FROM [TheHistoryofBaseball].hall_of_fame AS T1
+     INNER JOIN [TheHistoryofBaseball].[salary] AS T2
+         ON T1.[player_id] = T2.[player_id]
+WHERE    T1.[inducted] = 'Y'
+GROUP BY T2.[team_id]
+ORDER BY count_ DESC;","The top 10 teams with the most Hall of Fame players are the New York Mets and the Boston Red Sox with 7 players each, followed by the San Diego Padres with 6 players, and the Los Angeles Dodgers, New York Yankees, Minnesota Twins, Chicago Cubs, California Angels, Oakland Athletics, and Cleveland Indians, each with 5 players."
+WorldSoccerDataBase,7,How many matches in Spain in 2010?,"SELECT Count(*)
+FROM [WorldSoccerDataBase].football_data
+WHERE Country = 'Spain'
+  AND YEAR(Datetime) = 2010;",There were 851 matches in Spain in 2010.
+GreaterManchesterCrime,8,"If it is possible to increase the number of police officers, which place is with the first priority?","SELECT   TOP 1 [Location]
+FROM [GreaterManchesterCrime].greatermanchestercrime
+GROUP BY [Location]
+ORDER BY count(*) DESC;","If it is possible to increase the number of police officers, the place with the first priority is on or near the parking area."
+Pesticide,8,What is the maximum pesticide concentration ever found in a commodity?,"SELECT max([concen])
+FROM [Pesticide].resultsdata15;",The maximum pesticide concentration ever found in a commodity is 9.8.
+StudentMathScore,8,How much funding does Colorado schools receive from Title 1 and the Child Nutrition program respectively?,"SELECT sum(T1.[c14]) AS c14_funding,
+       sum(T1.[c25]) AS c25_funding
+FROM [StudentMathScore].finrev_fed_17 AS T1
+   INNER JOIN [StudentMathScore].finrev_fed_key_17 AS T2
+       ON T1.[state_code] = T2.[State_Code]
+WHERE  T2.[State] = 'Colorado';","Colorado schools receive $150,308 from Title 1 and $204,363 from the Child Nutrition program."
+TheHistoryofBaseball,8,What is the average weight of players who were awarded third-base man in TSN all-star award?,"SELECT avg(CAST(T1.[weight] AS FLOAT))
+FROM [TheHistoryofBaseball].player AS T1
+   INNER JOIN [TheHistoryofBaseball].player_award AS T2
+       ON T1.[player_id] = T2.[player_id]
+WHERE  T2.[award_id] = 'TSN All-Star'
+       AND [notes] = '3B';",The average weight of players who were awarded third-baseman in the TSN All-Star award is 190.254 pounds.
+WorldSoccerDataBase,8,What is the highest home losing odds in Bet365 ever?,"SELECT max(B365A)
+FROM [WorldSoccerDataBase].football_data;",The highest home losing odds in Bet365 ever are 51.
+GreaterManchesterCrime,9,Which Lower Layer Output Area do most of the crimes happen in?,"SELECT   TOP 1 [LSOA]
+FROM [GreaterManchesterCrime].greatermanchestercrime
+GROUP BY [LSOA]
+ORDER BY count(*) DESC;",The Lower Layer Output Area where most of the crimes happen is Manchester 055B.
+Pesticide,9,What commodity type of apple has the highest pesticide residues to consume?,"SELECT   TOP 1 [commtype]
+FROM [Pesticide].resultsdata15
+WHERE    [commod] = 'AP'
+GROUP BY [commtype]
+ORDER BY sum(CAST([concen] AS FLOAT)) DESC;",The commodity type of apple that has the highest pesticide residues to consume is FR.
+StudentMathScore,9,What is the average NAEP math score for all eighth graders in federally-funded states?,"SELECT avg([average_scale_score])
+FROM [StudentMathScore].ndecoreexcel_math_grade8;",The average NAEP math score for all eighth graders in federally-funded states is 282.
+TheHistoryofBaseball,9,Which states have produced the largest number of candidates inducted into the hall of fame?,"SELECT   TOP 1 T2.[birth_state]
+FROM [TheHistoryofBaseball].player AS T2
+     INNER JOIN [TheHistoryofBaseball].hall_of_fame AS T1
+         ON T1.[player_id] = T2.[player_id]
+WHERE    [inducted] = 'Y'
+GROUP BY T2.[birth_state]
+ORDER BY count(T1.[player_id]) DESC;",The state that has produced the largest number of candidates inducted into the Hall of Fame is New York.
+WorldSoccerDataBase,9,How many games had no goals scored at full time?,"SELECT COUNT(*) AS TotalMatches
+FROM [WorldSoccerDataBase].football_data
+WHERE FTHG = 0 AND FTAG = 0;","A total of 15,358 games had no goals scored at full time."
+GreaterManchesterCrime,10,What is the result in case 6B:E2:54:C6:58:D2?,"SELECT [Outcome]
+FROM [GreaterManchesterCrime].greatermanchestercrime
+WHERE  [CrimeID] = '6B:E2:54:C6:58:D2';","The result in case 6B:E2:54:C6:58:D2 is ""Unable to prosecute suspect""."
+Pesticide,10,Which lab conduct of most number of tests?,"SELECT   TOP 1 [lab]
+FROM [Pesticide].resultsdata15
+GROUP BY [lab]
+ORDER BY count(*) DESC;",The lab that conducted the most number of tests is CA1.
+StudentMathScore,10,What are the top five states in descending order in terms of the number of school districts per state?,"SELECT TOP 5 T2.[State]
+FROM [StudentMathScore].finrev_fed_17 AS T1
+     INNER JOIN [StudentMathScore].finrev_fed_key_17 AS T2
+         ON T1.[state_code] = T2.[State_Code]
+GROUP BY T2.[State]
+ORDER BY count([school_district]) DESC;","The top five states in descending order in terms of the number of school districts per state are California, New York, Illinois, Texas, and Ohio."
+TheHistoryofBaseball,10,How many players were awarded more than ten times?,"SELECT COUNT(*)
+FROM   (SELECT   [player_id]
+        FROM [TheHistoryofBaseball].player_award
+        GROUP BY [player_id]
+        HAVING   count(*) > 10) AS T;",A total of 141 players were awarded more than ten times.
+WorldSoccerDataBase,10,How many matches had draw odds from Bet365 higher than 3?,"SELECT COUNT(*) AS MatchesWithHighDrawOdds
+FROM [WorldSoccerDataBase].football_data
+WHERE B365D > 3;","There were 122,707 matches with draw odds from Bet365 higher than 3."
